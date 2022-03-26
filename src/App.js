@@ -7,9 +7,11 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {SafeAreaView, StatusBar, Text, useColorScheme} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 import Constants from './utils/constants/index';
 import {Provider} from 'react-redux';
+import UserNavigator from './navigation/UserNavigator';
 import store from './redux/store';
 
 const App = () => {
@@ -22,9 +24,10 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <SafeAreaView style={backgroundStyle}>
+      <NavigationContainer>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      </SafeAreaView>
+        <UserNavigator />
+      </NavigationContainer>
     </Provider>
   );
 };
