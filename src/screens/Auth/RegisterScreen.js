@@ -30,7 +30,7 @@ const RegisterScreen = ({navigation}) => {
         alert('All fields required!');
         return;
       }
-      navigation.navigate(routes.PRODUCTLIST);
+      navigation.navigate(routes.SETTINGS);
     } catch (error) {
 
     }
