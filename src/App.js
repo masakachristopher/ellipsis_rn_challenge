@@ -13,6 +13,7 @@ import Constants from './utils/constants/index';
 import {Provider} from 'react-redux';
 import UserNavigator from './navigation/UserNavigator';
 import store from './redux/store';
+import MainNavigator from './navigation/MainNavigator';
 
 const App = () => {
   const {colors} = Constants;
@@ -26,7 +27,8 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <UserNavigator />
+        {/* <UserNavigator /> */}
+        <MainNavigator />
       </NavigationContainer>
     </Provider>
   );

@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import {Dimensions, StatusBar, StyleSheet,TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Input,Text, Button, Icon} from 'react-native-elements';
+import {Input,Text, Button, Icon, SocialIcon} from 'react-native-elements';
 import Constants from '../../utils/constants/index';
+import CustomText from '../../components/CustomText';
 const windowWidth = Dimensions.get('window').width;
 
 const LoginScreen = ({navigation}) => {
@@ -12,25 +13,14 @@ const LoginScreen = ({navigation}) => {
     const [password, setPassword] = useState('');
 
 
-    useEffect(() => {
-        // const unsubscribe = auth.onAuthStateChanged((authUser) => {
-        //     console.log(authUser);
-        //     if (authUser) {
-        //         navigation.replace("Home");
-        //     }
-        // });
-        // return unsubscribe;
-    },[]);
-
-    const signIn = ()=>{
+   const signIn = ()=>{
         try {
           if (!username && !password){
             // eslint-disable-next-line no-alert
             alert('All fields required!');
             return;
           }
-          navigation.navigate(routes.PRODUCTLIST);
-
+          navigation.navigate(routes.SETTINGS);
         } catch (error) {
 
         }
@@ -50,7 +40,7 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.toLoginTextContainer}>
           <View style={styles.insideContent}>
             <TouchableOpacity
-                onPress={()=> navigation.navigate(routes.LOGIN)}
+                onPress={()=> navigation.navigate(routes.REGISTER)}
                 style={styles.insideContent}>
                 <Text style={styles.toSignUp}>Sign Up</Text>
             </TouchableOpacity>
@@ -82,7 +72,27 @@ const LoginScreen = ({navigation}) => {
         onSubmitEditing={signIn}
       />
 
-        <Button containerStyle={styles.buttonLogin}  onPress={signIn} title="Login" />
+        <Button buttonStyle={styles.buttonLogin}  onPress={signIn} title="Sign In" />
+        <CustomText>or</CustomText>
+        <SocialIcon
+          style={styles.socialIconButton}
+          title="Sign In With Facebook"
+          button
+          type="facebook"
+        />
+
+        <SocialIcon
+          style={styles.socialIconButton}
+          title="Sign In With Google"
+          button
+          type="google"
+        />
+        <SocialIcon
+          style={styles.socialIconButton}
+          title="Sign In With Twitter"
+          button
+          type="twitter"
+        />
     </View>
     );
 
@@ -138,16 +148,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
-      button: {
-        width: windowWidth - 30,
-        marginTop: 10,
-        borderRadius: 4,
-        color: '#000',
-      },
       buttonLogin: {
+        height: 50,
         width: windowWidth - 30,
-        marginTop: 10,
-        backgroundColor: 'blue',
       },
       inputContainer: {
         width: windowWidth - 30,
@@ -164,6 +167,10 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: 'blue',
         marginTop: 5,
+      },
+      socialIconButton:{
+        width: windowWidth - 30,
+        borderRadius: 4,
       },
 });
 export default LoginScreen;
